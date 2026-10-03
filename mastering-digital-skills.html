@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mastering Digital Skills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --indigo:#1F2A5C; --ink:#0D1230; --paper:#F6F7FB; --saffron:#F2A900; --teal:#0E7C7B; --line:#D9DCEA; --white:#fff; --red:#B3261E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Public Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{background:var(--indigo);color:#fff}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{display:inline-flex;align-items:flex-end;gap:2px;height:20px}
+.brand i b{width:5px;background:var(--saffron);display:block}
+.brand i b:nth-child(1){height:6px}.brand i b:nth-child(2){height:10px}.brand i b:nth-child(3){height:15px}.brand i b:nth-child(4){height:20px}
+nav a{color:#fff;text-decoration:none;font-size:14px;margin-left:18px;opacity:.85}
+nav a:hover{opacity:1}
+.hero{background:var(--indigo);color:#fff;padding:56px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:end}
+.hero h1{font-size:clamp(40px,7vw,76px);font-weight:800}
+.hero p{margin:18px 0 26px;max-width:46ch;color:#D7DBF2;font-size:18px}
+.stairs{display:flex;align-items:flex-end;gap:8px;height:300px}
+.stairs div{flex:1;border-radius:10px 10px 0 0;padding:12px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;line-height:1.15;color:var(--ink)}
+.stairs div:nth-child(1){height:34%;background:#C9CEEA}
+.stairs div:nth-child(2){height:55%;background:#9FA8DA}
+.stairs div:nth-child(3){height:77%;background:#F7CE5B}
+.stairs div:nth-child(4){height:100%;background:var(--saffron)}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 16px 'Public Sans',sans-serif;padding:13px 22px;border-radius:8px;background:var(--saffron);color:var(--ink);text-decoration:none}
+.btn:hover{filter:brightness(.95)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.alt{background:var(--indigo);color:#fff}
+.btn.ghost{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.btn.small{padding:8px 14px;font-size:14px}
+.btn.red{background:var(--red);color:#fff}
+section{padding:56px 0}
+section h2{font-size:clamp(28px,4vw,40px);margin-bottom:10px}
+.lead{color:#4a5072;max-width:60ch;margin-bottom:28px}
+.mods{display:grid;gap:14px}
+.mod{display:grid;grid-template-columns:56px 1fr;gap:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.mod .n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:34px;color:var(--saffron);-webkit-text-stroke:1px var(--indigo)}
+.mod h3{font-size:21px;margin-bottom:4px}
+.mod p{color:#4a5072;font-size:15px}
+.how{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.steps div{border-left:4px solid var(--teal);padding-left:14px}
+.steps b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:18px;margin-bottom:4px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;max-width:520px;margin:40px auto}
+.card h2{font-size:30px;margin-bottom:6px}
+.card p.sub{color:#4a5072;margin-bottom:18px;font-size:15px}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 5px}
+input,textarea{width:100%;font:inherit;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff}
+input:focus,textarea:focus{border-color:var(--indigo);outline:none}
+textarea{min-height:84px;resize:vertical}
+.card .btn{margin-top:20px;width:100%}
+.msg{margin-top:16px;padding:12px 14px;border-radius:8px;font-size:15px}
+.msg.ok{background:#DDF3F1;color:#064B4A}
+.msg.wait{background:#FFF1CC;color:#5B4100}
+.msg.err{background:#FBE0DE;color:#7A1510}
+.links{margin-top:16px;font-size:14px;color:#4a5072}
+.links a{color:var(--indigo);font-weight:600}
+.tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.tabs button{border:1.5px solid var(--line);background:#fff;padding:8px 14px;border-radius:999px;font:600 14px 'Public Sans';cursor:pointer}
+.tabs button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.req{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;display:grid;gap:6px}
+.req .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
+.tag.pending{background:#FFF1CC;color:#5B4100}.tag.approved{background:#DDF3F1;color:#064B4A}.tag.rejected{background:#FBE0DE;color:#7A1510}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:10px 0 24px}
+.progress span{display:block;height:100%;background:var(--teal);transition:width .3s}
+.lesson{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:15px}
+.lesson input{width:20px;height:20px;accent-color:var(--teal)}
+.lesson.done span{text-decoration:line-through;color:#7a80a0}
+.mod.full{grid-template-columns:1fr}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;z-index:9}
+.lesson{align-items:flex-start}
+.lesson details{flex:1}
+.lesson summary{cursor:pointer;font-weight:500}
+.lesson.done summary{text-decoration:line-through;color:#7a80a0}
+.lesson .body{white-space:pre-wrap;margin:10px 0;color:#2b3157;line-height:1.7}
+.lesson .btn{margin:0 0 8px}
+.req textarea{min-height:120px}
+.loading{text-align:center;padding:80px 20px;color:#4a5072}
+footer{background:var(--ink);color:#aeb3d6;padding:28px 0;font-size:14px}
+@media(max-width:760px){
+  .hero .wrap{grid-template-columns:1fr}
+  .stairs{height:200px}
+  .steps{grid-template-columns:1fr}
+  nav a{margin-left:12px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#/"><i><b></b><b></b><b></b><b></b></i>Mastering Digital Skills</a>
+  <nav id="nav"></nav>
+</div></header>
+
+<main id="app"></main>
+
+<footer><div class="wrap">Mastering Digital Skills &copy; <span id="yr"></span>. Koyi a hankalinka.</div></footer>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc,updateDoc,collection,getDocs} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ============ SAITUNA: CIKA WANNAN KAFIN AMFANI ============ */
+// 1) Kwafo firebaseConfig daga Firebase Console (Project settings > Your apps > Web app)
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+// 2) Imel ɗin admin (ka ƙirƙiri wannan account a Firebase Console > Authentication > Users)
+const ADMIN_EMAIL = "admin@example.com";
+
+const ST = {pending:"Ana jira", approved:"An amince", rejected:"An ƙi"};
+
+const MODULES = [
+  {t:"Tushen Fasahar Zamani", d:"Yi amfani da waya da kwamfuta da ƙwarin gwiwa, shiga intanet, kuma ka kare kanka."},
+  {t:"Sadarwa da Aiki Cikin Sauƙi", d:"Yi aiki da magana a intanet ta hanyar imel, takardu da kiran bidiyo."},
+  {t:"Tallan Zamani (Digital Marketing)", d:"Tallata kasuwanci ko ra'ayi ta hanyar kafafen sada zumunta da abun ciki mai sauƙi."},
+  {t:"Samun Kuɗi a Intanet", d:"Mayar da ƙwarewarka kuɗi ta hanyar aikin freelance da sayar da kaya a intanet."}
+];
+// Darussan kansu (abun karatu) suna cikin Firestore ne, ba a nan ba. Sai wanda aka amince ne kaɗai zai iya karanta su.
+
+/* ============ TAIMAKO ============ */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=e=>e.trim().toLowerCase();
+const LOADING=`<div class="loading">Ana lodi...</div>`;
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
+function errText(e){
+  const c=(e&&e.code)||"";
+  if(c.includes("invalid-credential")||c.includes("wrong-password")||c.includes("user-not-found")||c.includes("invalid-email")) return "Imel ko password ba daidai ba ne.";
+  if(c.includes("email-already-in-use")) return "An riga an yi rajista da wannan imel. <a href='#/login'>Shiga</a>.";
+  if(c.includes("weak-password")) return "Password ɗin ya yi rauni. Yi amfani da akalla haruffa 6.";
+  if(c.includes("too-many-requests")) return "An yi ƙoƙari sau da yawa. Jira ɗan lokaci ka sake gwadawa.";
+  if(c.includes("permission-denied")) return "Ba a ba ka izinin yin wannan ba.";
+  return "Wani abu ya faru. Duba intanet ɗinka ka sake gwadawa.";
+}
+// Yana kulle button yayin aiki, kuma yana nuna kuskure idan ya faru
+function submit(formSel,msgSel,fn){
+  const f=$(formSel);
+  f.onsubmit=async e=>{
+    e.preventDefault();
+    const b=f.querySelector("button[type=submit]"); b.disabled=true;
+    try{ await fn(); }
+    catch(err){ console.error(err); $(msgSel).innerHTML=`<div class="msg err">${errText(err)}</div>`; }
+    b.disabled=false;
+  };
+}
+
+/* ============ FIREBASE ============ */
+const configured=!firebaseConfig.apiKey.startsWith("YOUR");
+let auth,db;
+if(configured){ const app=initializeApp(firebaseConfig); auth=getAuth(app); db=getFirestore(app); }
+const isAdmin=u=>!!u&&u.email&&u.email.toLowerCase()===ADMIN_EMAIL.toLowerCase();
+const getReq=async email=>{const s=await getDoc(doc(db,"requests",norm(email)));return s.exists()?s.data():null};
+
+/* ============ NAV ============ */
+function renderNav(){
+  const u=configured?auth.currentUser:null;
+  $("#nav").innerHTML = u
+    ? `${isAdmin(u)?`<a href="#/admin">Admin</a>`:`<a href="#/learn">Karatuna</a>`}<a href="#" id="out">Fita</a>`
+    : `<a href="#/access">Nemi damar shiga</a><a href="#/login">Shiga</a>`;
+  const o=$("#out"); if(o) o.onclick=async e=>{e.preventDefault();await signOut(auth);location.hash="#/";route()};
+}
+
+/* ============ SHAFUKA ============ */
+function setupNotice(){
+  $("#app").innerHTML=`<div class="card"><h2>Ba a gama saiti ba</h2>
+  <p class="sub">Bude fayil ɗin nan, ka cika <b>firebaseConfig</b> da <b>ADMIN_EMAIL</b> a sashen SAITUNA, sannan ka sake loda shafin.</p></div>`;
+}
+
+function home(){
+  $("#app").innerHTML=`
+  <div class="hero"><div class="wrap">
+    <div style="padding-bottom:50px">
+      <h1>Mastering Digital Skills</h1>
+      <p>Kwas ɗin module huɗu wanda zai kai ka daga aika imel na farko zuwa samun kuɗi a intanet. Ana shiga ne da amincewa, don haka ka nemi damar shiga ka fara.</p>
+      <a class="btn" href="#/access">Nemi damar shiga</a>
+    </div>
+    <div class="stairs" aria-hidden="true">
+      ${MODULES.map((m,i)=>`<div>Module ${i+1}</div>`).join("")}
+    </div>
+  </div></div>
+
+  <section><div class="wrap">
+    <h2>Module huɗu, hanya guda bayyananna</h2>
+    <p class="lead">Kowane module yana ginuwa kan na baya. Ka kammala su bisa jeri.</p>
+    <div class="mods">
+      ${MODULES.map((m,i)=>`<div class="mod"><div class="n">${i+1}</div><div><h3>${m.t}</h3><p>${m.d}</p></div></div>`).join("")}
+    </div>
+  </div></section>
+
+  <section class="how"><div class="wrap">
+    <h2>Yadda ake shiga</h2>
+    <p class="lead">Yin rajista yana buɗewa ne kawai bayan admin ya amince da buƙatarka.</p>
+    <div class="steps">
+      <div><b>Aika buƙata</b>Cika sunanka, imel da lambar waya.</div>
+      <div><b>Jira amincewa</b>Duba matsayinka a kowane lokaci da imel ɗinka.</div>
+      <div><b>Yi rajista ka koyi</b>Bayan an amince, ƙirƙiri password ɗinka ka fara Module 1.</div>
+    </div>
+  </div></section>`;
+}
+
+function access(){
+  $("#app").innerHTML=`
+  <div class="card">
+    <h2>Nemi damar shiga</h2>
+    <p class="sub">Admin yana duba kowace buƙata. Za ka iya yin rajista bayan an amince da taka.</p>
+    <form id="f" autocomplete="on">
+      <label for="n">Cikakken suna</label><input id="n" required maxlength="80">
+      <label for="e">Imel</label><input id="e" type="email" required>
+      <label for="p">Lambar waya</label><input id="p" type="tel" required maxlength="25">
+      <label for="r">Me yasa kake son shiga? (ba dole ba)</label><textarea id="r" maxlength="500"></textarea>
+      <button class="btn" type="submit">Aika buƙata</button>
+    </form>
+    <div id="m"></div>
+    <div class="links">Ka riga ka aika buƙata? <a href="#/status">Duba matsayinka</a></div>
+  </div>`;
+  submit("#f","#m",async()=>{
+    const email=norm($("#e").value);
+    const ex=await getReq(email);
+    if(ex){
+      $("#m").innerHTML=`<div class="msg wait">Buƙata ta riga ta wanzu da wannan imel. Matsayinta: <b>${ST[ex.status]}</b>. <a href="#/status">Duba matsayi</a></div>`;return;
+    }
+    await setDoc(doc(db,"requests",email),{
+      name:$("#n").value.trim(),email,phone:$("#p").value.trim(),reason:$("#r").value.trim(),status:"pending",at:Date.now()
+    });
+    $("#f").reset();
+    $("#m").innerHTML=`<div class="msg ok">An aika buƙatarka. Ka dawo ka <a href="#/status">duba matsayinka</a> da imel ɗinka.</div>`;
+  });
+}
+
+function status(){
+  $("#app").innerHTML=`
+  <div class="card">
+    <h2>Duba matsayinka</h2>
+    <p class="sub">Shigar da imel ɗin da ka yi amfani da shi wajen neman damar shiga.</p>
+    <form id="f"><label for="e">Imel</label><input id="e" type="email" required>
+    <button class="btn" type="submit">Duba matsayi</button></form>
+    <div id="m"></div>
+    <div class="links">Ba ka aika buƙata ba tukuna? <a href="#/access">Nemi damar shiga</a></div>
+  </div>`;
+  submit("#f","#m",async()=>{
+    const email=norm($("#e").value), r=await getReq(email), m=$("#m");
+    if(!r) m.innerHTML=`<div class="msg err">Ba a sami buƙata da wannan imel ba. <a href="#/access">Aika buƙata</a>.</div>`;
+    else if(r.status==="pending") m.innerHTML=`<div class="msg wait">Buƙatarka tana jiran amincewa. Sake dubawa daga baya.</div>`;
+    else if(r.status==="rejected") m.innerHTML=`<div class="msg err">Ba a amince da buƙatarka ba. Tuntuɓi admin don taimako.</div>`;
+    else m.innerHTML=`<div class="msg ok">An amince. Yanzu za ka iya <a href="#/register?e=${encodeURIComponent(email)}"><b>yin rajista</b></a>.</div>`;
+  });
+}
+
+function register(){
+  const pre=decodeURIComponent((location.hash.split("e=")[1]||""));
+  $("#app").innerHTML=`
+  <div class="card">
+    <h2>Ƙirƙiri asusunka</h2>
+    <p class="sub">Yi amfani da imel ɗin da admin ya amince da shi.</p>
+    <form id="f">
+      <label for="e">Imel</label><input id="e" type="email" value="${esc(pre)}" required>
+      <label for="pw">Password (akalla haruffa 6)</label><input id="pw" type="password" minlength="6" required>
+      <label for="pw2">Tabbatar da password</label><input id="pw2" type="password" minlength="6" required>
+      <button class="btn" type="submit">Yi rajista</button>
+    </form>
+    <div id="m"></div>
+    <div class="links">Kana da asusu? <a href="#/login">Shiga</a></div>
+  </div>`;
+  submit("#f","#m",async()=>{
+    const email=norm($("#e").value), m=$("#m"), r=await getReq(email);
+    if(!r){m.innerHTML=`<div class="msg err">Wannan imel ba shi da buƙatar da aka amince da ita. <a href='#/access'>Nemi damar shiga</a>.</div>`;return}
+    if(r.status==="pending"){m.innerHTML=`<div class="msg wait">Buƙatarka har yanzu tana jira. Za ka iya yin rajista bayan an amince.</div>`;return}
+    if(r.status==="rejected"){m.innerHTML=`<div class="msg err">Ba a amince da buƙatarka ba.</div>`;return}
+    if($("#pw").value!==$("#pw2").value){m.innerHTML=`<div class="msg err">Password ɗin ba su yi daidai ba.</div>`;return}
+    const cred=await createUserWithEmailAndPassword(auth,email,$("#pw").value);
+    await setDoc(doc(db,"users",cred.user.uid),{email,name:r.name,done:{}});
+    location.hash="#/learn";
+  });
+}
+
+function login(){
+  $("#app").innerHTML=`
+  <div class="card">
+    <h2>Shiga</h2>
+    <p class="sub">Ga ɗaliban da aka amince da su kuma suka yi rajista.</p>
+    <form id="f">
+      <label for="e">Imel</label><input id="e" type="email" required>
+      <label for="pw">Password</label><input id="pw" type="password" required>
+      <button class="btn" type="submit">Shiga</button>
+    </form>
+    <div id="m"></div>
+    <div class="links">Sabo ne? <a href="#/access">Nemi damar shiga</a> · An amince da kai? <a href="#/register">Yi rajista</a></div>
+  </div>`;
+  submit("#f","#m",async()=>{
+    const email=norm($("#e").value);
+    await signInWithEmailAndPassword(auth,email,$("#pw").value);
+    if(isAdmin(auth.currentUser)){location.hash="#/admin";return}
+    const r=await getReq(email);
+    if(!r||r.status!=="approved"){
+      await signOut(auth);
+      $("#m").innerHTML=`<div class="msg err">An cire damar shigarka ko ba a amince ba tukuna. Tuntuɓi admin.</div>`;return;
+    }
+    location.hash="#/learn";
+  });
+}
+
+async function loadModules(){
+  const snaps=await Promise.all(MODULES.map((m,i)=>getDoc(doc(db,"modules","m"+(i+1)))));
+  return snaps.map(x=>x.exists()&&Array.isArray(x.data().lessons)?x.data().lessons:[]);
+}
+const safeUrl=u=>{try{const x=new URL(u);return x.protocol==="https:"?x.href:""}catch(e){return ""}};
+const lid=(l,i,j)=>l.id||("x"+i+"-"+j);
+
+async function learn(){
+  const u=auth.currentUser;
+  if(!u){location.hash="#/login";return}
+  if(isAdmin(u)){location.hash="#/admin";return}
+  $("#app").innerHTML=LOADING;
+  try{
+    const r=await getReq(u.email);
+    if(!r||r.status!=="approved"){await signOut(auth);renderNav();location.hash="#/login";return}
+    const ref=doc(db,"users",u.uid);
+    const snap=await getDoc(ref);
+    let prof;
+    if(snap.exists()) prof=snap.data();
+    else { prof={email:norm(u.email),name:r.name,done:{}}; await setDoc(ref,prof); }
+    prof.done=prof.done||{};
+    const lessons=await loadModules();
+    draw(prof,ref,lessons);
+  }catch(e){
+    console.error(e);
+    $("#app").innerHTML=`<div class="card"><div class="msg err">${errText(e)}</div></div>`;
+  }
+}
+function draw(prof,ref,lessons){
+  let total=0,done=0;
+  lessons.forEach((ls,i)=>ls.forEach((l,j)=>{total++;if(prof.done[lid(l,i,j)])done++}));
+  const pct=total?Math.round(done/total*100):0;
+  $("#app").innerHTML=`
+  <div class="wrap" style="padding-top:36px;padding-bottom:40px">
+    <h2 style="font-size:34px">Barka da zuwa, ${esc(prof.name.split(" ")[0])}</h2>
+    <p class="lead" style="margin-bottom:0">Darussa ${done} daga cikin ${total} sun kammala (${pct}%)</p>
+    <div class="progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><span style="width:${pct}%"></span></div>
+    <div class="mods">
+      ${MODULES.map((m,i)=>`
+      <div class="mod full"><div><h3>Module ${i+1}: ${m.t}</h3><p>${m.d}</p>
+        <div style="margin-top:10px">
+        ${lessons[i].length?lessons[i].map((l,j)=>{
+          const k=lid(l,i,j),c=prof.done[k],v=safeUrl(l.video||"");
+          return `<div class="lesson ${c?"done":""}"><input type="checkbox" data-k="${esc(k)}" ${c?"checked":""} aria-label="Alama ta kammalawa"><details><summary>${esc(l.t||"Darasi")}</summary><div class="body">${esc(l.body||"")}</div>${v?`<a class="btn small alt" href="${esc(v)}" target="_blank" rel="noopener">Kalli bidiyo</a>`:""}</details></div>`;
+        }).join(""):`<p style="margin-top:8px">Ba a ƙara darussa a wannan module ba tukuna.</p>`}
+        </div></div></div>`).join("")}
+    </div>
+  </div>`;
+  document.querySelectorAll("input[data-k]").forEach(cb=>cb.onchange=async()=>{
+    const k=cb.dataset.k, v=cb.checked;
+    prof.done[k]=v; draw(prof,ref,lessons);
+    try{ await updateDoc(ref,{["done."+k]:v}); }
+    catch(e){ prof.done[k]=!v; draw(prof,ref,lessons); toast("Ba a iya adana ba. Sake gwadawa."); }
+  });
+}
+
+let adminFilter="pending", adminTab="requests", adminMod=0;
+const topTabs=()=>`<div class="tabs"><button class="${adminTab==="requests"?"on":""}" data-t="requests">Buƙatu</button><button class="${adminTab==="content"?"on":""}" data-t="content">Abun karatu</button></div>`;
+const bindTop=()=>document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{adminTab=b.dataset.t;admin()});
+
+async function admin(){
+  const u=auth.currentUser;
+  if(!isAdmin(u)){
+    $("#app").innerHTML=`
+    <div class="card"><h2>Admin</h2><p class="sub">Shiga da asusun admin don sarrafa buƙatu da abun karatu.</p>
+    <form id="f"><label for="e">Imel</label><input id="e" type="email" required>
+    <label for="pw">Password</label><input id="pw" type="password" required>
+    <button class="btn alt" type="submit">Buɗe dashboard</button></form><div id="m"></div></div>`;
+    submit("#f","#m",async()=>{
+      await signInWithEmailAndPassword(auth,norm($("#e").value),$("#pw").value);
+      if(!isAdmin(auth.currentUser)){await signOut(auth);$("#m").innerHTML=`<div class="msg err">Wannan asusun ba na admin ba ne.</div>`;return}
+      renderNav(); admin();
+    });
+    return;
+  }
+  if(adminTab==="content") return adminContent();
+  $("#app").innerHTML=LOADING;
+  try{
+    const snap=await getDocs(collection(db,"requests"));
+    const reqs=snap.docs.map(d=>({id:d.id,...d.data()}));
+    const list=reqs.filter(r=>r.status===adminFilter).sort((a,b)=>b.at-a.at);
+    const count=s=>reqs.filter(r=>r.status===s).length;
+    $("#app").innerHTML=`
+    <div class="wrap" style="padding-top:36px;padding-bottom:40px">
+      <h2 style="font-size:34px">Admin</h2>
+      ${topTabs()}
+      <div class="tabs">
+        ${["pending","approved","rejected"].map(s=>`<button class="${adminFilter===s?"on":""}" data-s="${s}">${ST[s]} (${count(s)})</button>`).join("")}
+        <button id="rf">Sabunta</button>
+      </div>
+      ${list.length?list.map(r=>`
+        <div class="req">
+          <div><b>${esc(r.name)}</b> <span class="tag ${r.status}">${ST[r.status]}</span></div>
+          <div>${esc(r.email)} · ${esc(r.phone)}</div>
+          ${r.reason?`<div style="color:#4a5072;font-size:14px">${esc(r.reason)}</div>`:""}
+          <div class="row">
+            ${r.status!=="approved"?`<button class="btn small" data-a="approved" data-id="${esc(r.id)}">Amince</button>`:""}
+            ${r.status!=="rejected"?`<button class="btn small red" data-a="rejected" data-id="${esc(r.id)}">${r.status==="approved"?"Cire damar shiga":"Ƙi"}</button>`:""}
+          </div>
+        </div>`).join(""):`<div class="msg wait">Babu buƙata a wannan sashe.</div>`}
+    </div>`;
+    bindTop();
+    document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{adminFilter=b.dataset.s;admin()});
+    $("#rf").onclick=()=>admin();
+    document.querySelectorAll("[data-a]").forEach(b=>b.onclick=async()=>{
+      b.disabled=true;
+      try{
+        await updateDoc(doc(db,"requests",b.dataset.id),{status:b.dataset.a});
+        toast(b.dataset.a==="approved"?"An amince":"An sabunta");
+      }catch(e){ console.error(e); toast("Ba a iya sabuntawa ba."); }
+      admin();
+    });
+  }catch(e){
+    console.error(e);
+    $("#app").innerHTML=`<div class="card"><div class="msg err">${errText(e)}</div></div>`;
+  }
+}
+
+async function adminContent(){
+  $("#app").innerHTML=LOADING;
+  const ref=doc(db,"modules","m"+(adminMod+1));
+  let ls=[];
+  try{
+    const s=await getDoc(ref);
+    ls=s.exists()&&Array.isArray(s.data().lessons)?s.data().lessons:[];
+  }catch(e){
+    console.error(e);
+    $("#app").innerHTML=`<div class="card"><div class="msg err">${errText(e)}</div></div>`;return;
+  }
+  ls.forEach((l,j)=>{if(!l.id) l.id="l"+Date.now()+j});
+  const sync=()=>{
+    document.querySelectorAll("[data-j]").forEach(box=>{
+      const j=+box.dataset.j;
+      ls[j].t=box.querySelector("[data-f=t]").value.trim();
+      ls[j].body=box.querySelector("[data-f=body]").value;
+      ls[j].video=box.querySelector("[data-f=video]").value.trim();
+    });
+  };
+  const paint=()=>{
+    $("#app").innerHTML=`
+    <div class="wrap" style="padding-top:36px;padding-bottom:40px">
+      <h2 style="font-size:34px">Admin</h2>
+      ${topTabs()}
+      <div class="tabs">${MODULES.map((m,i)=>`<button class="${i===adminMod?"on":""}" data-m="${i}">Module ${i+1}</button>`).join("")}</div>
+      <p class="lead">${esc(MODULES[adminMod].t)}. Sai ɗaliban da aka amince da su ne kaɗai za su iya ganin waɗannan darussa. Ka danna "Ajiye" kafin ka canja module.</p>
+      ${ls.map((l,j)=>`
+        <div class="req" data-j="${j}">
+          <label>Taken darasi</label><input data-f="t" value="${esc(l.t||"")}" maxlength="120">
+          <label>Abun darasi</label><textarea data-f="body" maxlength="20000">${esc(l.body||"")}</textarea>
+          <label>Link na bidiyo (https, ba dole ba)</label><input data-f="video" value="${esc(l.video||"")}" placeholder="https://">
+          <div class="row"><button class="btn small red" data-del="${j}">Share darasi</button></div>
+        </div>`).join("")||`<div class="msg wait">Babu darasi a wannan module. Danna "Ƙara darasi".</div>`}
+      <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn ghost small" id="add">Ƙara darasi</button>
+        <button class="btn small" id="save">Ajiye</button>
+      </div>
+    </div>`;
+    bindTop();
+    document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{adminMod=+b.dataset.m;adminContent()});
+    document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
+      if(!confirm("Ka tabbata kana so ka share wannan darasi?"))return;
+      sync(); ls.splice(+b.dataset.del,1); paint();
+    });
+    $("#add").onclick=()=>{sync(); ls.push({id:"l"+Date.now(),t:"",body:"",video:""}); paint()};
+    $("#save").onclick=async()=>{
+      sync();
+      const bad=ls.find(l=>l.video&&!safeUrl(l.video));
+      if(bad){toast("Link na bidiyo dole ya fara da https://");return}
+      try{
+        await setDoc(ref,{lessons:ls.filter(l=>l.t||l.body)});
+        toast("An ajiye");
+      }catch(e){console.error(e);toast("Ba a iya ajiyewa ba.")}
+    };
+  };
+  paint();
+}
+
+/* ============ ROUTER ============ */
+async function route(){
+  if(!configured){renderNav();setupNotice();return}
+  const h=(location.hash||"#/").split("?")[0].replace("#","");
+  renderNav();
+  ({"/":home,"/access":access,"/status":status,"/register":register,"/login":login,"/learn":learn,"/admin":admin}[h]||home)();
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+$("#yr").textContent=new Date().getFullYear();
+if(configured){
+  // Jira Firebase ya gano ko akwai wanda ya riga ya shiga kafin a nuna shafi
+  $("#app").innerHTML=LOADING;
+  let first=true;
+  onAuthStateChanged(auth,()=>{ renderNav(); if(first){first=false;route()} });
+}else route();
+</script>
+</body>
+</html>
